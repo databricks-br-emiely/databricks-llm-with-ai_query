@@ -12,9 +12,9 @@ Nesta demonstração, mostraremos como classificar e responder automaticamente �
 Também exploraremos como o LLM pode ser usado para gerar dados fakes.
 
 &nbsp;
-## Demo: Enriquecendo avaliações de clientes em escala com funções SQL AI do Databricks + LLM Fondation Model: Mixtral-8x7B
+## Funções de IA
 
-As funções AI são funções SQL integradas do Databricks, permitindo que você acesse Large Language Models (LLMs) diretamente do SQL.
+As funções de IA são funções SQL integradas do Databricks, permitindo que você acesse Large Language Models (LLMs) diretamente do SQL.
 
 LLMs populares, como o Mixtral-8x7B, permitem aplicar todos os tipos de transformações no texto, desde classificação, extração de informações até respostas automáticas.
 
@@ -24,9 +24,10 @@ Depois de desenvolver o prompt LLM correto, você pode transformá-lo rapidament
 
 O AI Functions abstrai as complexidades técnicas de chamada de LLMs, permitindo que analistas e cientistas de dados comecem a usar esses modelos sem se preocupar com a infraestrutura subjacente.
 
-### Aumentando a satisfação do cliente e redução de churn com análise automática de avaliações
+&nbsp;
+## Demo: Aumentando a satisfação do cliente e redução de churn com análise automática de avaliações
 
-Nesta demonstração, construiremos um pipeline de dados que recebe avaliações de clientes, na forma de texto de formato livre, e as enriquece com significado derivado de perguntas em linguagem natural do modelo Mixtral-8x7B. Forneceremos até recomendações sobre as próximas melhores ações para nossa equipe de atendimento ao cliente - ou seja, se um cliente precisa de acompanhamento e um exemplo de mensagem para acompanhamento
+Nesta demonstração, construiremos um pipeline de dados que recebe avaliações de clientes, na forma de texto de formato livre, e as enriquece com significado derivado de perguntas em linguagem natural do modelo Mixtral-8x7B. Forneceremos até recomendações sobre as próximas melhores ações para nossa equipe de atendimento ao cliente - ou seja, se um cliente precisa de acompanhamento e um exemplo de mensagem para acompanhamento.
 
 Para cada revisão, nós:
 - Determine o sentimento e se uma resposta é necessária para o cliente
@@ -40,9 +41,9 @@ Para cada revisão, nós:
 <img width="1px" src="https://www.google-analytics.com/collect?v=1&gtm=GTM-NKQ8TT7&tid=UA-163989034-1&aip=1&t=event&ec=dbdemos&ea=VIEW&dp=%2F_dbdemos%2FDBSQL%2Fsql-ai-functions%2F01-SQL-AI-Functions-Introduction&cid=984752964297111&uid=7582903553287639">
 
 
-#### 0/ Configuração: obtenha sua configuração da API do Mixtral
+### 0/ Configuração: obtenha sua configuração da API do Mixtral
 
-##### Pré-requisitos
+#### Pré-requisitos
 
 Para executar esta demonstração em seu próprio ambiente, você precisará atender a estes pré-requisitos:
 
@@ -52,7 +53,7 @@ Para executar esta demonstração em seu próprio ambiente, você precisará ate
   - [Requisitos de região das APIs de foundation model no Databricks na AWS](https://docs.databricks.com/pt/machine-learning/foundation-models/index.html)
 
 
-#### 1/ Testando as APIs de Fondation Models através das interfaces visuais
+### 1/ Testando as APIs de Fondation Models através das interfaces visuais
 
 Para realizar testes nas APIs de Fondation Models em interface visual, podemos fazer de algumas formas:
 - No menu lateral esquerdo do Databricks, abaixo de **Machine Learning**, podemos acessá-lo através do menu: <img src="https://github.com/anasanchezss9/databricks_sql_e_openai/blob/main/images/serving menu.png?raw=true" width="160">
@@ -61,7 +62,7 @@ Para realizar testes nas APIs de Fondation Models em interface visual, podemos f
 Abra [02-Testando-IA-Gen-Interaface-Visual]($./01-Testando-IA-Gen-Interaface-Visual) para começar a testar um modelo de IA generativa através das interfaces visuais do Databricks!
 
 
-#### 2/ Introdução ao `AI_QUERY`: Gerando dados falsos para nossa demonstração com Open AI
+### 2/ Introdução ao `AI_QUERY`: Gerando dados falsos para nossa demonstração com Open AI
 
 Para iniciar nossa demonstração, aproveitaremos `AI_QUERY()` para gerar avaliações falsas para usar em nosso pipeline de dados.
 
@@ -70,7 +71,7 @@ Os dados de amostra imitam avaliações de clientes sobre produtos de mercearia 
 Abra [03-Gerando-dados-fake-com-as-funcoes-de-AI]($./02-Gerando-dados-fake-com-as-funcoes-de-AI) para começar com sua primeira função SQL AI!
 
 
-#### 3/ Construindo nosso pipeline SQL com Open AI para extrair sentimentos de revisão
+### 3/ Construindo nosso pipeline SQL com Open AI para extrair sentimentos de revisão
 
 Agora estamos prontos para criar nosso pipeline de dados completo:
 
@@ -79,11 +80,11 @@ Agora estamos prontos para criar nosso pipeline de dados completo:
 
 Abra [04-automatizando-as-avaliacoes-e-respostas]($./03-automatizando-as-avaliacoes-e-respostas) para processar nosso texto usando SQL e automzatize o processo de análise de avaliações e criação de respostas personalizadas.
 
-### Referência
+## Referência
 
 Essa demonstração foi baseada na demonstração [SQL AI Functions](https://www.dbdemos.ai/demo.html?demoName=sql-ai-functions) do site  de tutoriais oficiais da Databricks.
 
-### Leituras adicionais e recursos
+## Leituras adicionais e recursos
 - [Documentação](https://learn.microsoft.com/pt-br/azure/databricks/sql/language-manual/functions/AI_QUERY)
 - [Apresentando funções de IA: Integrando modelos de linguagem grandes com Databricks SQL](https://www.databricks.com/blog/2023/04/18/introducing-ai-functions-integrating-large-language-models-databricks-sql.html)
 - Confira mais demonstrações do Databricks no [Demo Center](https://www.databricks.com/resources/demos/tutorials?itm_data=demo_center)
