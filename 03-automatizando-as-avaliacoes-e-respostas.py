@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # 4/ Revisão e classificação automatizada de produtos com funções SQL
+# MAGIC # 3/ Revisão e classificação automatizada de produtos com funções SQL
 # MAGIC
 # MAGIC
 # MAGIC Nesta demonstração, exploraremos a função SQL AI `AI_QUERY` para criar um pipeline extraindo informações de avaliação do produto.
@@ -184,8 +184,4 @@ display(sql_api.execute_sql("""
 # MAGIC
 # MAGIC Vimos que o lakehouse fornece recursos avançados de IA, agora você pode incorporar o uso da IA Generativa em seus projeotos, diretamente do Databricks!
 # MAGIC
-# MAGIC Volte para [a introdução]($./01-Funcoes-SQL-AI-Intro)
-
-# COMMAND ----------
-
-
+# MAGIC Volte para [a introdução]($./README.md)

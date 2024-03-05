@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # APIs de foundation model do Databricks
+# MAGIC #1/ APIs de foundation model do Databricks
 # MAGIC
 # MAGIC ## Databricks Model Serving
 # MAGIC
@@ -76,4 +76,9 @@
 
 # COMMAND ----------
 
-
+# MAGIC %md
+# MAGIC ## Próxima etapa: gerar nosso conjunto de dados de demonstração aproveitando as funções de IA
+# MAGIC
+# MAGIC Abra o próximo Notebook para gerar alguns dados de amostra para nossa demonstração: [03-Gerando-dados-fake-com-as-funcoes-de-AI]($./02-Gerando-dados-fake-com-as-funcoes-de-AI)
+# MAGIC
+# MAGIC Volte para [a introdução]($./README.md)

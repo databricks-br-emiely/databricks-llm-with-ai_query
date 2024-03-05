@@ -223,11 +223,7 @@ display(spark.sql(f"select * from {catalog}.{db}.clientes_fake"))
 
 # MAGIC %md
 # MAGIC ## Próximos passos
-# MAGIC Agora estamos prontos para implementar nosso pipeline para extrair informações de nossas análises! Abra [04-revisão e resposta automatizada de produto]($./04-automatizando-as-avaliacoes-e-respostas) para continuar.
+# MAGIC Agora estamos prontos para implementar nosso pipeline para extrair informações de nossas análises! Abra [03-revisão e resposta automatizada de produto]($./03-automatizando-as-avaliacoes-e-respostas) para continuar.
 # MAGIC
 # MAGIC
-# MAGIC Volte para [a introdução]($./01-Funcoes-SQL-AI-Intro)
-
-# COMMAND ----------
-
-
+# MAGIC Volte para [a introdução]($./README.md)
