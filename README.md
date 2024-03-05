@@ -59,7 +59,7 @@ Para realizar testes nas APIs de Fondation Models em interface visual, podemos f
 - No menu lateral esquerdo do Databricks, abaixo de **Machine Learning**, podemos acessá-lo através do menu: <img src="https://github.com/anasanchezss9/databricks_sql_e_openai/blob/main/images/serving menu.png?raw=true" width="160">
 - No menu lateral esquerdo do Databricks, abaixo de **Machine Learning**, podemos acessá-lo através do menu: <img src="https://github.com/anasanchezss9/databricks_sql_e_openai/blob/main/images/playgroung menu.png?raw=true" width="160">
 
-Abra [02-Testando-IA-Gen-Interaface-Visual]($./01-Testando-IA-Gen-Interaface-Visual) para começar a testar um modelo de IA generativa através das interfaces visuais do Databricks!
+Abra [01-Testando-IA-Gen-Interaface-Visual]($./01-Testando-IA-Gen-Interaface-Visual) para começar a testar um modelo de IA generativa através das interfaces visuais do Databricks!
 
 
 ### 2/ Introdução ao `AI_QUERY`: Gerando dados falsos para nossa demonstração com Open AI
@@ -68,7 +68,7 @@ Para iniciar nossa demonstração, aproveitaremos `AI_QUERY()` para gerar avalia
 
 Os dados de amostra imitam avaliações de clientes sobre produtos de mercearia enviados a um site de comércio eletrônico, e criaremos um prompt para que a Open AI gere esses dados para nós.
 
-Abra [03-Gerando-dados-fake-com-as-funcoes-de-AI]($./02-Gerando-dados-fake-com-as-funcoes-de-AI) para começar com sua primeira função SQL AI!
+Abra [02-Gerando-dados-fake-com-as-funcoes-de-AI]($./02-Gerando-dados-fake-com-as-funcoes-de-AI) para começar com sua primeira função SQL AI!
 
 
 ### 3/ Construindo nosso pipeline SQL com Open AI para extrair sentimentos de revisão
@@ -78,7 +78,7 @@ Agora estamos prontos para criar nosso pipeline de dados completo:
 &nbsp;
 <img src="https://github.com/anasanchezss9/databricks_sql_e_openai/blob/main/images/sql-ai-function-flow.png?raw=true" width="1000">
 
-Abra [04-automatizando-as-avaliacoes-e-respostas]($./03-automatizando-as-avaliacoes-e-respostas) para processar nosso texto usando SQL e automzatize o processo de análise de avaliações e criação de respostas personalizadas.
+Abra [03-automatizando-as-avaliacoes-e-respostas]($./03-automatizando-as-avaliacoes-e-respostas) para processar nosso texto usando SQL e automzatize o processo de análise de avaliações e criação de respostas personalizadas.
 
 ## Referência
 
