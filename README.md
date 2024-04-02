@@ -80,6 +80,12 @@ Agora estamos prontos para criar nosso pipeline de dados completo:
 
 Abra [03-automatizando-as-avaliacoes-e-respostas]($./03-automatizando-as-avaliacoes-e-respostas) para processar nosso texto usando SQL e automzatize o processo de análise de avaliações e criação de respostas personalizadas.
 
+### 4/ Extra: Outras Funções de AI no Databricks SQL
+
+Conheça as outras funções de AI disponíveis no Databricks SQL para use cases comuns que incluem sumarização, classificação de tema, extração de entidades, criação de conteúdo, entre outros.
+
+Abra [04- Extra: Outras Funções de AI]($./04-Funções-de-IA-do-Databricks) para textar essas funções no notebook. Fique à vontade para também testá-las no SQL Editor.
+
 ## Referência
 
 Essa demonstração foi baseada na demonstração [SQL AI Functions](https://www.dbdemos.ai/demo.html?demoName=sql-ai-functions) do site  de tutoriais oficiais da Databricks.

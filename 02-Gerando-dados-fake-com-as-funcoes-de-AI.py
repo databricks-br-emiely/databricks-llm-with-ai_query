@@ -51,9 +51,9 @@ db=f"llms_managed_{username}"
 
 # COMMAND ----------
 
-endpoint_name= 'databricks-mixtral-8x7b-instruct'
+endpoint_name= 'databricks-dbrx-instruct'
 #### Preencha com o nome do seu warehouse
-warehouse-name="ana-warehouse-preview"
+warehouse_name="ana-warehouse-preview"
 
 # COMMAND ----------
 
@@ -61,7 +61,7 @@ warehouse-name="ana-warehouse-preview"
 sql_api = SQLStatementAPI(warehouse_name =warehouse_name , catalog = catalog, schema = db)
 
 df = sql_api.execute_sql(f"""
-SELECT ai_query('databricks-mixtral-8x7b-instruct', 
+SELECT ai_query('{endpoint_name}', 
   "Gere uma breve amostra de review de um cartão de crédito em português do Brasil. O cliente que escreveu o review está muito insatisfeito com o produto por causa de uma situação que foi utiliza-lo durante a black friday e seu cartão foi bloqueado e não conseguiu realizar a compra.") as product_review""")
 display(df)
 
@@ -79,10 +79,10 @@ display(df)
 # COMMAND ----------
 
 # DBTITLE 1,SQL admin setup wrapper function
-sql_api.execute_sql("""CREATE OR REPLACE FUNCTION ASK_LLM(prompt STRING)
+sql_api.execute_sql(f"""CREATE OR REPLACE FUNCTION ASK_LLM(prompt STRING)
                                 RETURNS STRING
                                 RETURN 
-                                  ai_query('databricks-mixtral-8x7b-instruct', prompt)""")
+                                  ai_query('{endpoint_name}', prompt)""")
 
 # COMMAND ----------
 
@@ -118,13 +118,13 @@ fake_reviews = sql_api.execute_sql("""
 SELECT ASK_LLM(
       'Gere um conjunto de dados de amostra de 2 linhas que contenha as seguintes colunas: "data" (datas aleatórias em 2022),
        "review_id" (id aleatório), "id_cliente" (aleatório de 1 a 100) e "review". As avaliações devem imitar análises úteis de produtos
-       deixado em um site de um banco, eles tem diversos produtos, tais como: cartão de crédito; seguro de residencia, carro, celular; finciamento; empréstimo; conta corrente; entre outros.
+       deixado em um site de um banco, eles tem diversos produtos, tais como: cartão de crédito; seguro de residencia, carro, celular; finciamento; empréstimo e conta corrente.
       
        As avaliações devem ser sobre os produtos bancários e em português do Brasil.
 
        As revisões devem variar em extensão (menor: uma frase, mais longa: 2 parágrafos), sentimento e complexidade. Uma revisão muito complexa falaria sobre vários tópicos (entidades) sobre o produto com sentimentos variados por tópico. Forneça uma mistura de aspectos positivos, negativos, e comentários neutros.
 
-       Dê-me apenas JSON. Nenhum texto fora do JSON. Sem explicações ou notas
+       Dê-me apenas JSON. Nenhum texto fora do JSON. Sem adicionar: ```json  no retorno.
       [{"review_date":<date>, "review_id":<long>, "id_cliente":<long>, "review":<string>}]') as reviews""")
 display(fake_reviews)
 
@@ -147,7 +147,7 @@ SELECT FROM_JSON(
     ASK_LLM(
     CONCAT('Gere um conjunto de dados de amostra de ', num_reviews, ' linhas que contém as seguintes colunas: "data" (datas aleatórias em 2022),
        "id_avaliacao" (id aleatório), "id_cliente" (valor unico de 1 a 15) e "review". As avaliações devem imitar análises úteis de produtos
-       deixado em um site de um banco, eles tem diversos produtos, tais como: cartão de crédito; seguro de residencia, carro, celular; finciamento; empréstimo; conta corrente; entre outros.
+       deixado em um site de um banco, eles tem diversos produtos, tais como: cartão de crédito; seguro de residencia, carro, celular; finciamento; empréstimo e conta corrente.
       
        As avaliações devem ser sobre os produtos bancários.
 
@@ -156,8 +156,8 @@ SELECT FROM_JSON(
        e comentários neutros.
 
 
-       Dê-me apenas JSON. Nenhum texto fora do JSON. Sem explicações ou notas
-      [{"data_avaliacao":<date>, "id_avaliacao":<long>, "id_cliente":<long>, "avaliacao":<string>}]')), 
+       Dê-me apenas JSON. Nenhum texto fora do JSON. Sem adicionar: ```json  no retorno.
+       [{"data_avaliacao":<date>, "id_avaliacao":<long>, "id_cliente":<long>, "avaliacao":<string>}]')), 
       "array<struct<data_avaliacao:date, id_avaliacao:long, id_cliente:long, avaliacao:string>>")""")
 
 # COMMAND ----------
@@ -165,7 +165,7 @@ SELECT FROM_JSON(
 # DBTITLE 1,Explode the json result as a table
 display(sql_api.execute_sql("""SELECT review.* FROM (
                                 SELECT explode(reviews) as review FROM (
-                                  SELECT GERE_AVALIACOES_fake(5) as reviews))"""))
+                                  SELECT GERE_AVALIACOES_fake(10) as reviews))"""))
 
 # COMMAND ----------
 
@@ -198,10 +198,10 @@ RETURNS array<struct<id_cliente:long, nome:string, sobrenome:string, qnt_pedido:
 RETURN 
 SELECT FROM_JSON(
     ASK_LLM(
-      CONCAT('Gere um conjunto de dados de amostra de clientes ', num_reviews,' contendo as seguintes colunas:
+      CONCAT('Gere um conjunto de dados de amostra de clientes brasileiros ', num_reviews,' contendo as seguintes colunas:
        "id_cliente" (long from 1 to ', num_reviews, '), "nome", "sobrenome" e qnt_pedido (número positivo aleatório, menor que 200)
 
-       Dê-me apenas JSON. Nenhum texto fora do JSON. Sem explicações ou notas
+       Dê-me apenas JSON. Nenhum texto fora do JSON. Sem adicionar: ```json  no retorno.
       [{"id_cliente":<long>, "nome":<string>, "sobrenome":<string>, "qnt_pedido":<int>}]')), 
       "array<struct<id_cliente:long, nome:string, sobrenome:string, qnt_pedido:int>>")""")
 
@@ -227,3 +227,7 @@ display(spark.sql(f"select * from {catalog}.{db}.clientes_fake"))
 # MAGIC
 # MAGIC
 # MAGIC Volte para [a introdução]($./README.md)
+
+# COMMAND ----------
+
+

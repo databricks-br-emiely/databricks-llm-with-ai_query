@@ -38,8 +38,9 @@
 catalog = "workshops_databricks"
 db=f"llms_managed_{username}"
 
+endpoint_name= 'databricks-dbrx-instruct'
 #### Preencha com o nome do seu warehouse
-warehouse-name="ana-warehouse-preview"
+warehouse_name="ana-warehouse-preview"
 
 # COMMAND ----------
 
@@ -98,13 +99,15 @@ sql_api.execute_sql("""
            - retornar se o cliente requer acompanhamento: S ou N
            - se for necessário acompanhamento, explique qual é o motivo principal
 
-         Retorne SOMENTE JSON. Nenhum outro texto fora do JSON. Formato JSON:
+       Dê-me apenas JSON. Nenhum texto fora do JSON. Sem adicionar: ```json  no retorno:
           {
           "tipodoproduto": <nome do produto>,
           "sentimento": <revisar sentimento, um de ["positivo","neutro","negativo"]>,
           "acompanhamento": <S ou N para acompanhamento>,
           "motivoacompanhamento": <motivo do acompanhamento>
           }
+
+          Nunca retorne null.
         
          avaliacao:', avaliacao)),
       "STRUCT<tipodoproduto: STRING, sentimento: STRING, acompanhamento: STRING, motivoacompanhamento: STRING>")""")
@@ -161,27 +164,13 @@ display(sql_api.execute_sql("""SELECT * FROM respostas_avaliacoes"""))
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ### Extra: Consultas AdHoc
+# MAGIC ## Próximos passos
+# MAGIC Além da função AI Query, temos diversas outras funções de AI no Databricks para atender demandas específicas! Abra [04- Extra: Outras Funções de AI
+# MAGIC ]($./04-Funções-de-IA-do-Databricks) para continuar.
 # MAGIC
-# MAGIC Lembre-se de que os analistas sempre podem usar a função `ask_llm()` que criamos anteriormente para aplicar seus próprios prompts aos dados.
-# MAGIC
-# MAGIC Como um breve exemplo, vamos escrever uma consulta para extrair todos os comentários sobre bebidas:
-
-# COMMAND ----------
-
-display(sql_api.execute_sql("""
-  SELECT id_avaliacao,
-    BOOLEAN(ask_llm(
-      CONCAT("Is this review: ", avaliacao, " representing banking products related to insurance? Boolean response: only 'true' or 'false' in the response, lowercase letters, no explanations or notes or full stop.")
-    )) AS isseguro,
-    avaliacao
-  FROM avaliacoes_fake LIMIT 10"""))
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC ## Agora você está pronto para processar seu texto usando modelos LLM externos!
-# MAGIC
-# MAGIC Vimos que o lakehouse fornece recursos avançados de IA, agora você pode incorporar o uso da IA Generativa em seus projeotos, diretamente do Databricks!
 # MAGIC
 # MAGIC Volte para [a introdução]($./README.md)
+
+# COMMAND ----------
+
+
